@@ -55,7 +55,17 @@ def half(window, key):
         window.moveTo(left, 0)
     elif key == "right":
         window.moveTo(right, 0)
-        
+
+
+def center(window):
+    """ Center the window, leave width as is """
+    remaining_width = RESOLUTION.width - window.width
+    gaps_width = remaining_width // 2
+    
+    remaining_height = FULL_HEIGHT - window.height
+    gaps_height = remaining_height // 2
+    window.moveTo(gaps_width, gaps_height)
+
 
 def main():
     # Horizontal thirds
@@ -69,6 +79,10 @@ def main():
                         args=["left"], suppress=True)
     keyboard.add_hotkey("alt+win+right", lambda k: half(gw.getActiveWindow(), k), 
                         args=["right"], suppress=True)
+
+    # Center window
+    keyboard.add_hotkey("alt+win+c", lambda: center(gw.getActiveWindow()), 
+                        suppress=True)
 
     keyboard.wait()
     

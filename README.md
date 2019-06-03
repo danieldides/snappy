@@ -6,3 +6,4 @@ A Windows "port" of the fantastic [Spectacle](https://github.com/eczarny/spectac
 ## Keybinds
 - `ctrl+win+left/right` snap to nearest third
 - `alt+win+left/right` snap to left or right half
+- `alt+win+c` center window
