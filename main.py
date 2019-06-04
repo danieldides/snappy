@@ -43,18 +43,29 @@ def third(window, key):
 
 
 def half(window, key):
-    """ Snap to left or right half of display """
+    """ 
+    Snap to left or right half of display
+    Repeating the command grows the window to 2/3
+    """
     half_width = RESOLUTION.width // 2
+    third_width = RESOLUTION.width // 3
     left = 0
     right = half_width
 
     if window.width != half_width:
         window.resizeTo(half_width, FULL_HEIGHT)
+    elif window.width == half_width:
+        window.resizeTo(2*third_width, FULL_HEIGHT)
+
+    pos = window.left
 
     if key == "left":
         window.moveTo(left, 0)
     elif key == "right":
-        window.moveTo(right, 0)
+        if window.width == half_width:
+            window.moveTo(right, 0)
+        elif window.width == 2*third_width:
+            window.moveTo(third_width, 0)
 
 
 def center(window):
@@ -74,7 +85,7 @@ def main():
     keyboard.add_hotkey("ctrl+win+right", lambda k: third(gw.getActiveWindow(), k), 
                         args=["right"], suppress=True)
 
-    # left and right halves
+    # left and right halves (or 2/3rds)
     keyboard.add_hotkey("alt+win+left", lambda k: half(gw.getActiveWindow(), k), 
                         args=["left"], suppress=True)
     keyboard.add_hotkey("alt+win+right", lambda k: half(gw.getActiveWindow(), k), 
