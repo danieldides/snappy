@@ -1,3 +1,5 @@
+![snappy banner](images/banner.png)
+
 # Snappy
 A Windows "port" of [Spectacle](https://github.com/eczarny/spectacle) for Mac.
 
