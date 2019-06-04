@@ -95,6 +95,16 @@ def main():
     keyboard.add_hotkey("alt+win+c", lambda: center(gw.getActiveWindow()), 
                         suppress=True)
 
+    # TODO
+    # Multimonitor support (send to next monitor)
+    # keyboard.add_hotkey("ctrl+win+alt+left", lambda k: next_monitor(gw.getActiveWindow()), 
+    #                     args=["left"], suppress=True)
+    # keyboard.add_hotkey("ctrl+win+alt+right", lambda k: next_monitor(gw.getActiveWindow()), 
+    #                     args=["right"], suppress=True)
+
+
+
+
     keyboard.wait()
     
 
