@@ -79,28 +79,51 @@ def v_third(window, key):
 
 def half(window, key):
     """ 
-    Snap to left or right half of display
+    Snap to left, right, top, or bottom of display
     Repeating the command grows the window to 2/3
     """
     half_width = RESOLUTION.width // 2
     third_width = RESOLUTION.width // 3
+    half_height = RESOLUTION.height // 2
+    third_height = RESOLUTION.height // 3
+
     left = 0
     right = half_width
 
-    if window.width != half_width:
-        window.resizeTo(half_width, FULL_HEIGHT)
-    elif window.width == half_width:
-        window.resizeTo(2*third_width, FULL_HEIGHT)
+    top = 0
+    bottom = half_height
 
-    pos = window.left
+    if key in ("up, down"):
+        if window.height != half_height:
+            window.resizeTo(RESOLUTION.width, half_height)
+        elif window.height == half_height:
+            window.resizeTo(RESOLUTION.width, 2*third_height)
 
-    if key == "left":
-        window.moveTo(left, 0)
-    elif key == "right":
-        if window.width == half_width:
-            window.moveTo(right, 0)
-        elif window.width == 2*third_width:
-            window.moveTo(third_width, 0)
+        pos = window.top
+
+        if key == "up":
+            window.moveTo(0, top)
+        elif key == "down":
+            if window.height == half_height:
+                window.moveTo(0, half_height)
+            elif window.height == 2*third_height:
+                window.moveTo(0, third_height)
+
+    elif key in ("left", "right"):
+        if window.width != half_width:
+            window.resizeTo(half_width, FULL_HEIGHT)
+        elif window.width == half_width:
+            window.resizeTo(2*third_width, FULL_HEIGHT)
+
+        pos = window.left
+
+        if key == "left":
+            window.moveTo(left, 0)
+        elif key == "right":
+            if window.width == half_width:
+                window.moveTo(right, 0)
+            elif window.width == 2*third_width:
+                window.moveTo(third_width, 0)
 
 
 def center(window):
@@ -132,6 +155,12 @@ def main():
                         args=["left"], suppress=True)
     keyboard.add_hotkey("alt+win+right", lambda k: half(gw.getActiveWindow(), k), 
                         args=["right"], suppress=True)
+
+    # Top and bottom halves (or 2/3rds)
+    keyboard.add_hotkey("alt+win+up", lambda k: half(gw.getActiveWindow(), k), 
+                        args=["up"], suppress=True)
+    keyboard.add_hotkey("alt+win+down", lambda k: half(gw.getActiveWindow(), k), 
+                        args=["down"], suppress=True)
 
     # Center window
     keyboard.add_hotkey("alt+win+c", lambda: center(gw.getActiveWindow()), 
