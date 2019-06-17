@@ -1,6 +1,6 @@
 import keyboard
 
-from .hotkeys import configure_default_keybinds
+from snappy.hotkeys import configure_default_keybinds
 
 
 def main():

@@ -1,7 +1,7 @@
 import keyboard
 import pygetwindow as gw
 
-from .sizes import center, h_third, v_third, half
+from snappy.sizes import center, h_third, v_third, half
 
 
 def configure_default_keybinds():
