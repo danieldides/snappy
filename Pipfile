@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 keyboard = "*"
 pygetwindow = "*"
+pystray = "*"
 
 [dev-packages]
 
