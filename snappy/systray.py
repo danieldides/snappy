@@ -13,6 +13,7 @@ def configure_systray():
     def exit_action(icon):
         icon.visible = False
         icon.stop()
+        os._exit(1)
 
     image = Image.open(os.path.join("images", "snappy_systray.png"))
     
